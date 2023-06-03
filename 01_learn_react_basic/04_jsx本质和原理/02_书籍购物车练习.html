@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+  <script type="text/babel">
+
+    const books = [
+      {
+        name: "算法导论",
+        id: '1',
+        price: 99,
+        count: 1
+      },
+      {
+        name: "计算机组成原理",
+        id: '2',
+        price: 91,
+        count: 1
+      },
+      {
+        name: "js高级程序设计",
+        id: '3',
+        price: 95,
+        count: 1
+      },
+      {
+        name: "计算机是如何跑起来的",
+        id: '4',
+        price: 78,
+        count: 1
+      },
+    ]
+
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          message: 'hello react',
+          books: books,
+        }
+      }
+      remove = (i) => {
+        const newBooks = [...this.state.books]
+        newBooks.splice(i, 1)
+        this.setState({
+          books: newBooks
+        })
+      }
+      plus(i) {
+        const newBooks = [...this.state.books]
+        newBooks[i].count += 1;
+        this.setState({
+          books: newBooks
+        })
+      }
+
+      render() {
+        const { message, books } = this.state
+        // 计算总价
+        // let total = 0
+        // for (let i = 0; i < books.length; i++) {
+        //   total += books[i].count * books[i].price
+        // }
+
+        // 第二种方式
+        let total = books.reduce((pre, current) => {
+          return pre + current.price * current.count
+        }, 0);
+
+        return (
+          <div>
+            <table border="1" align="center">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>名称</th>
+                  <th>价格</th>
+                  <th>数量</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  books.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{item.id}</td>
+                        <td>{item.name}</td>
+                        <td>{item.price}</td>
+                        <td>
+                          {item.count}
+                          <button onClick={() => this.plus(index)}>加</button>
+                        </td>
+                        <td>
+                          <button onClick={() => this.remove(index)}>
+                            移除
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
+            <p>总价:{total}</p>
+          </div>
+        )
+      }
+    }
+    const app = ReactDOM.createRoot(document.querySelector('#app'))
+    app.render(<App />)
+  </script>
+</body>
+
+</html>

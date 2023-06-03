@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+  <script type="text/babel">
+
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          message: 'hello react',
+          counter: 0,
+          names: ['abc', 'cba'],
+          aaa: undefined,
+          bbb: null,
+          ccc: true,
+          ddd: {
+            nihao: 'name'
+          }
+        }
+      }
+
+      render() {
+        const { message, counter, names } = this.state
+        const { aaa, bbb, ccc } = this.state
+        const { ddd } = this.state
+        return (
+          <div>
+            {/* 1. number string array 这些类型都是可以直接显示  */}
+            <h2>{message}</h2>
+            <h2>{counter}</h2>
+            <h2>{names}</h2>
+            {/* 2.undefined  null  boolean了这些类型作为元素内容不会直接渲染出来  */}
+            {/*真想渲染true   null  undefined 调用toString就可以  undefined会报错*/}
+            <h2>{aaa}</h2>
+            <h2>{bbb}</h2>
+            <h2>{ccc.toString()}</h2>
+            {/* 3.object类型不能作为元素内容进行渲染会报错*/}
+            {/* 4.还可以插入对应的表达式*/}
+            <h2>{ccc ? '你好' : '不好'}</h2>
+          </div >
+
+        )
+      }
+    }
+    const app = ReactDOM.createRoot(document.querySelector('#app'))
+    app.render(<App />)
+  </script>
+</body>
+
+</html>

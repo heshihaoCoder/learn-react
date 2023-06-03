@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+  <script type="text/babel">
+
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          message: 'hello react'
+        }
+      }
+
+      render() {
+        // 书写规范
+        // 1.jsx结构中只能有一个根元素下图所示
+        // 2.jsx的机构通常会包裹一个小括号，当成一个整体，方便换行
+        // 3.jsx中的元素可以是单标签也可以是双标签  如果是单标签 必须以/结尾
+
+        const { message } = this.state
+        return (
+          <div>
+            {/* jsx中的注释*/}
+            <h2>{message}</h2>
+          </div>
+        )
+      }
+    }
+    const app = ReactDOM.createRoot(document.querySelector('#app'))
+    app.render(<App />)
+  </script>
+</body>
+
+</html>

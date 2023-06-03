@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+  <script type="text/babel">
+    // 实现默认是第一个红色  之后点击哪个哪个是红色
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          movies: ['大话西游', '复仇者联盟', '赌神', '澳门风云'],
+          style: {
+            color: 'red'
+          },
+          i: 0
+        }
+      }
+      liClick = (e, index) => {
+        console.log(e, index)
+        this.setState(
+          {
+            i: index
+          }
+        )
+      }
+
+      render() {
+        const { movies, style, i } = this.state
+        return (
+          <div>
+            <ul>
+              {
+                movies.map((item, index) => {
+                  return
+                  <li
+                    key={item}
+                    style={index == i ? style : {}}
+                    onClick={(e) => { this.liClick(e, index) }}
+                  >
+                    {item}
+                  </li>
+                })
+              }
+            </ul>
+          </div>
+        )
+      }
+    }
+    const app = ReactDOM.createRoot(document.querySelector('#app'))
+    app.render(<App />)
+  </script>
+</body>
+
+</html>

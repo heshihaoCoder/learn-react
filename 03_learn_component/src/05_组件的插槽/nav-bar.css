@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.nav-bar {
+  display: flex;
+  text-align: center;
+  line-height: 40px;
+}
+.search,
+.back {
+  width: 60px;
+  height: 40px;
+  background-color: aqua;
+}
+.two {
+  flex: 1;
+  background-color: beige;
+}

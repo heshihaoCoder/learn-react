@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+  <script type="text/babel">
+
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          messageReact: 'hello react',
+          messageWorld: 'hello world',
+          showReact: true
+        }
+      }
+
+      render() {
+        const { messageReact, messageWorld, showReact } = this.state
+        // 还可以使用三元运算符
+        // if (showReact) {
+        //   return (
+        //     <div>
+        //       <h2>{messageReact}</h2>
+        //       <button onClick={() => { this.setState({ showReact: false }) }}>切换</button>
+        //     </div>
+        //   )
+        // }
+        // else {
+        //   return (
+        //     <div>
+        //       <h2>{messageWorld}</h2>
+        //       <button onClick={() => { this.setState({ showReact: true }) }}>切换</button>
+        //     </div>
+        //   )
+        // }
+
+        // 还可以使用三元运算符
+        return (
+          <div>{showReact ? <h2>{showReact}</h2> : <h2>{showReact}</h2>} </div>
+        )
+
+      }
+    }
+    const app = ReactDOM.createRoot(document.querySelector('#app'))
+    app.render(<App />)
+  </script>
+</body>
+
+</html>

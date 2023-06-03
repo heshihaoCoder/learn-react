@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+  <script type="text/babel">
+
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          message: 'hello react'
+        }
+      }
+
+      render() {
+        // 主要就是通过React.createElement进行构建
+        const { message } = this.state
+        return (
+          <div>
+            <div className='header'>header</div>
+            <div className='content'>
+              <div>banner</div>
+              <ul>
+                <li>列表1</li>
+                <li>列表2</li>
+                <li>列表3</li>
+                <li>列表4</li>
+                <li>列表5</li>
+              </ul>
+            </div>
+            <div className='footer'>footer</div>
+          </div>
+        )
+      }
+    }
+    const app = ReactDOM.createRoot(document.querySelector('#app'))
+    app.render(<App />)
+  </script>
+</body>
+
+</html>

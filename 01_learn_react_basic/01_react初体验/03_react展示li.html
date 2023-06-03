@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>列表展示</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="../lib/react.development.js"></script>
+  <script src="../lib/react-dom.development.js"></script>
+  <script src="../lib/babel.min.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super()
+        this.state = {
+          movies: ['大话西游', '武状元苏乞儿', '月光宝盒']
+        }
+      }
+
+      // render() {
+      //   const element = this.state.movies.map((item) => {
+      //     return <li key={item}>{item}</li>
+      //   })
+
+      //   return (
+      //     <ul>{element}</ul>
+      //   )
+      // }
+      // 或者
+      render() {
+        return (
+          <ul>{this.state.movies.map((item) => <li key={item}>{item}</li>)}</ul>
+        )
+      }
+    }
+
+
+    const app = ReactDOM.createRoot(document.querySelector('#app'))
+    app.render(<App />)
+  </script>
+</body>
+
+</html>
